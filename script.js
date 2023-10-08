@@ -9,7 +9,6 @@ function updateLocation() {
     let locationInput = searchBar.value;
     if (locationInput !== "") {
         currentCity = locationInput;
-        console.log("currentLocation: " + currentCity);
         searchBar.innerHTML = "";
 
         getCurrentWeather(currentCity);
@@ -29,7 +28,7 @@ async function getCurrentWeather(location) {
     })
         .then(response => response.json())
         .then(jsonResponse => {
-            console.log("jsonResponse: " + jsonResponse)
+            console.log("jsonResponse: " + JSON.stringify(jsonResponse, null, 4))
             currentCity = jsonResponse.location.name;
             currentRegion = jsonResponse.location.region;
             currentCountry = jsonResponse.location.country;
@@ -50,12 +49,16 @@ async function getCurrentWeather(location) {
 function updateCurrentWeather(response) {
     let currentTempF = document.getElementById("current-temp");
     let currentCondition = document.getElementById("current-condition");
-    let feelsLike = document.getElementById("feels-like");
+    let currentConditionIcon = document.getElementById("current-condition-icon")
+    let feelsLikeF = document.getElementById("feels-like");
     let currentWind = document.getElementById("current-wind");
 
 
-    currentTempF.innerHTML = response.current.temp_f;
-    // currentCondition.innerHTML
+    currentTempF.innerHTML = response.current.temp_f + "°";
+    currentCondition.innerHTML = response.current.condition.text;
+    currentConditionIcon.innerHTML = "<img src=" + response.current.condition.icon + ">";
+    feelsLikeF.innerHTML = "Feels like: " + response.current.feelslike_f + "°";
+    currentWind.innerHTML = response.current.wind_mph + "mph";
 }
 
-getCurrentWeather(currentCity);
+// getCurrentWeather(currentCity);

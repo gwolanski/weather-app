@@ -1,0 +1,96 @@
+body,
+html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+html {
+    background: linear-gradient(to bottom, rgb(7, 21, 46), rgb(9, 85, 125));
+    background-repeat: no-repeat;
+    width: 100vw;
+}
+
+#header {
+    background-image: url(./clouds.jpg);
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    height: 10vh;
+    /* width: 100vw; */
+    padding: 15px;
+    font-size: 2.5rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#site-name-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+#icon {
+    height: 100px;
+    width: 100px;
+}
+
+#search-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#search-bar {
+    padding: 10px;
+    font-size: 1rem;
+}
+
+#search-btn {
+    padding: 10px;
+    font-size: 1rem; 
+}
+
+#top-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+#location-container {
+    padding: 25px;
+    text-align: center;
+}
+
+#current-location {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#current-weather-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 1px white solid;
+    border-radius: 100px;
+    width: 25%;
+    gap: 15px;
+}
+
+#temp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#current-temp {
+    font-size: 2rem;
+    font-weight: bold;
+}
