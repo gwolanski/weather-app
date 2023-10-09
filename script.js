@@ -12,7 +12,8 @@ function updateLocation() {
         searchBar.innerHTML = "";
 
         getCurrentWeather(currentCity);
-    }
+        getForecast(currentCity);
+;    }
 
 }
 
@@ -53,12 +54,28 @@ function updateCurrentWeather(response) {
     let feelsLikeF = document.getElementById("feels-like");
     let currentWind = document.getElementById("current-wind");
 
-
-    currentTempF.innerHTML = response.current.temp_f + "°";
     currentCondition.innerHTML = response.current.condition.text;
-    currentConditionIcon.innerHTML = "<img src=" + response.current.condition.icon + ">";
-    feelsLikeF.innerHTML = "Feels like: " + response.current.feelslike_f + "°";
-    currentWind.innerHTML = response.current.wind_mph + "mph";
+    currentConditionIcon.innerHTML = "<img width=100px height=100px src=" + response.current.condition.icon + ">";
+    currentTempF.innerHTML = Math.round(response.current.temp_f) + "°";
+    feelsLikeF.innerHTML = "Feels like: " + Math.round(response.current.feelslike_f) + "°";
+    currentWind.innerHTML = "Wind speed: " + response.current.wind_mph + " mph";
 }
 
-// getCurrentWeather(currentCity);
+async function getForecast(location) {
+    let forecastURL = "http://api.weatherapi.com/v1/forecast.json?key=2df0fe7fe5c54e55826132323230310&q=" + location + "&days=3";
+    
+    fetch(forecastURL, {
+        mode: 'cors'
+    })
+        .then(forecastResponse => forecastResponse.json())
+        .then(jsonForecastResponse => {
+            console.log("jsonForecastResponse: " + JSON.stringify(jsonForecastResponse, null, 4))
+        })
+}
+
+function updateForecast(response) {
+    let maxTemp = document.getElementById()
+}
+
+getCurrentWeather(currentCity);
+getForecast(currentCity);

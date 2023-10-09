@@ -18,26 +18,51 @@
             <button id="search-btn">Search</button>
         </div>
     </div>
-    <div id="top-body">
-        <div id="location-container">
-            <div id="current-location"></div>
-            <div id="current-country"></div>
-        </div>
-        <div id="current-weather-container">
-            <div id="current-weather-heading">Current Conditions:</div>
-            <div id="temp-container">
-                <div id="current-temp"></div>
-                <div id="feels-like"></div>
+    <div id="body-container">
+        <div id="top-body">
+            <div id="location-container">
+                <div id="current-location"></div>
+                <div id="current-country"></div>
             </div>
-            <div id="current-condition-icon"></div>
-            <img src="" alt="">
-            <div id="current-condition"></div>
-            <div id="current-wind"></div>
+            <div id="current-weather-container">
+                <div id="condition-container">
+                    <div id="current-condition-icon"></div>
+                    <div id="current-condition"></div>
+                </div>
+                <div id="temp-container">
+                    <div id="current-temp"></div>
+                    <div id="feels-like"></div>
+                </div>
+                <div id="current-wind"></div>
+            </div>
+        </div>
+        <div id="bottom-body">
+            <div id="forecast-container">
+                <div id="today-forecast-container" class="forecast">
+                    <div id="today-title" class="forecast-day">Today</div>
+                    <div id="today-date" class="forecast-date"></div>
+                    <div id="today-forecast-icon" class="forecast-icon"></div>
+                    <div id="today-max-temp" class="forecast-max"></div>
+                    <div id="today-min-temp" class="forecast-min"></div>
+                </div>
+                <div id="tomorrow-forecast-container" class="forecast">
+                    <div id="tomorrow-title" class="forecast-day">Tomorrow</div>
+                    <div id="tomorrow-date" class="forecast-date"></div>
+                    <div id="tomorrow-forecast-icon" class="forecast-icon"></div>
+                    <div id="tomorrow-max-temp" class="forecast-max"></div>
+                    <div id="tomorrow-min-temp" class="forecast-min"></div>
+                </div>
+                <div id="third-day-forecast-container" class="forecast">
+                    <div id="third-day-title" class="forecast-day"></div>
+                    <div id="third-day-date" class="forecast-date"></div>
+                    <div id="third-day-forecast-icon" class="forecast-icon"></div>
+                    <div id="third-day-max-temp" class="forecast-max"></div>
+                    <div id="third-day-min-temp" class="forecast-min"></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div id="bottom-body">
 
-    </div>
 
 
     <script src="./script.js"></script>
