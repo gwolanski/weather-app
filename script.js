@@ -71,10 +71,54 @@ async function getForecast(location) {
         .then(jsonForecastResponse => {
             console.log("jsonForecastResponse: " + JSON.stringify(jsonForecastResponse, null, 4))
         })
+        updateForecast(location);
 }
 
 function updateForecast(response) {
-    let maxTemp = document.getElementById()
+    let todayDate = document.getElementById("today-date");
+    let todayCondition = document.getElementById("today-forecast-icon");
+    let todayMaxTemp = document.getElementById("today-max-temp");
+    let todayMinTemp = document.getElementById("today-min-temp");
+
+    let tomorrowDate = document.getElementById("tomorrow-date");
+    let tomorrowCondition = document.getElementById("tomorrow-forecast-icon");
+    let tomorrowMaxTemp = document.getElementById("tomorrow-max-temp");
+    let tomorrowMinTemp = document.getElementById("tomorrow-min-temp");
+
+    let thirdDayDate = document.getElementById("third-day-date");
+    let thirdDayCondition = document.getElementById("third-day-forecast-icon");
+    let thirdDayMaxTemp = document.getElementById("third-day-max-temp");
+    let thirdDayMinTemp = document.getElementById("third-day-min-temp");
+
+    console.log("getTodayDate:" + getTodayDate());
+    console.log("getTomorrowDate: " + getTomorrowDate());
+    console.log("getThirdDayDate: " + getThirdDayDate());
+    
+}
+
+function getTodayDate() {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    let date = new Date().toLocaleDateString(undefined, options);
+    const [month, day, year] = date.split("/");
+    return `${year}-${month}-${day}`;
+}
+
+function getTomorrowDate() {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    let date = new Date();
+    date.setDate(date.getDate() + 1);
+    let localDate = date.toLocaleDateString(undefined, options);
+    const [month, day, year] = localDate.split("/");
+    return `${year}-${month}-${day}`;
+}
+
+function getThirdDayDate() {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    let date = new Date();
+    date.setDate(date.getDate() + 2);
+    let localDate = date.toLocaleDateString(undefined, options);
+    const [month, day, year] = localDate.split("/");
+    return `${year}-${month}-${day}`;
 }
 
 getCurrentWeather(currentCity);
