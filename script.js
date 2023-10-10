@@ -67,11 +67,16 @@ async function getForecast(location) {
     fetch(forecastURL, {
         mode: 'cors'
     })
-        .then(forecastResponse => forecastResponse.json())
+        .then(forecastResponse => 
+            forecastResponse.json()
+            // let cow = forecastResponse.json()
+            // console.log(cow)
+            )
         .then(jsonForecastResponse => {
-            console.log("jsonForecastResponse: " + JSON.stringify(jsonForecastResponse, null, 4))
+            console.log("jsonForecastResponse: " + JSON.stringify(jsonForecastResponse, null, 4));
+            updateForecast(jsonForecastResponse);
         })
-        updateForecast(location);
+    
 }
 
 function updateForecast(response) {
@@ -80,20 +85,29 @@ function updateForecast(response) {
     let todayMaxTemp = document.getElementById("today-max-temp");
     let todayMinTemp = document.getElementById("today-min-temp");
 
+    todayDate.innerHTML = getTodayDate();
+
+
     let tomorrowDate = document.getElementById("tomorrow-date");
     let tomorrowCondition = document.getElementById("tomorrow-forecast-icon");
     let tomorrowMaxTemp = document.getElementById("tomorrow-max-temp");
     let tomorrowMinTemp = document.getElementById("tomorrow-min-temp");
 
+    tomorrowDate.innerHTML = getTomorrowDate();
+    
     let thirdDayDate = document.getElementById("third-day-date");
     let thirdDayCondition = document.getElementById("third-day-forecast-icon");
     let thirdDayMaxTemp = document.getElementById("third-day-max-temp");
     let thirdDayMinTemp = document.getElementById("third-day-min-temp");
 
-    console.log("getTodayDate:" + getTodayDate());
-    console.log("getTomorrowDate: " + getTomorrowDate());
-    console.log("getThirdDayDate: " + getThirdDayDate());
-    
+    thirdDayDate.innerHTML = getThirdDayDate();
+
+    let forecastMaxTemp = [];
+
+    for(let i=0; i < response.forecast.forecastday.length; i++) {       
+        forecastMaxTemp.push(Math.round(response.forecast.forecastday[i].day.maxtemp_f));
+        console.log("forecastMaxTemp: " + forecastMaxTemp)
+    }
 }
 
 function getTodayDate() {
