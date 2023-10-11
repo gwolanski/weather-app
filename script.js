@@ -80,12 +80,25 @@ async function getForecast(location) {
 }
 
 function updateForecast(response) {
+    let forecastMaxTemp = [];
+    let forecastMinTemp = [];
+    let forecastCondition = [];
+
+    for(let i=0; i < response.forecast.forecastday.length; i++) {       
+        forecastMaxTemp.push(Math.round(response.forecast.forecastday[i].day.maxtemp_f));
+        forecastMinTemp.push(Math.round(response.forecast.forecastday[i].day.mintemp_f));
+        forecastCondition.push(response.forecast.forecastday[i].day.condition.icon);
+    }
+   
     let todayDate = document.getElementById("today-date");
     let todayCondition = document.getElementById("today-forecast-icon");
     let todayMaxTemp = document.getElementById("today-max-temp");
     let todayMinTemp = document.getElementById("today-min-temp");
 
-    todayDate.innerHTML = getTodayDate();
+    todayDate.innerHTML = getTodayDateString();
+    todayCondition.innerHTML = "<img width=80px height=80px src=" + forecastCondition[0] + ">";
+    todayMaxTemp.innerHTML = "High: " + forecastMaxTemp[0] + "°";
+    todayMinTemp.innerHTML = "Low: " + forecastMinTemp[0] + "°";
 
 
     let tomorrowDate = document.getElementById("tomorrow-date");
@@ -93,31 +106,34 @@ function updateForecast(response) {
     let tomorrowMaxTemp = document.getElementById("tomorrow-max-temp");
     let tomorrowMinTemp = document.getElementById("tomorrow-min-temp");
 
-    tomorrowDate.innerHTML = getTomorrowDate();
+    tomorrowDate.innerHTML = getTomorrowDateString();
+    tomorrowCondition.innerHTML = "<img width=80px height=80px src=" + forecastCondition[1] + ">";
+    tomorrowMaxTemp.innerHTML = "High: " + forecastMaxTemp[1] + "°";
+    tomorrowMinTemp.innerHTML ="Low: " + forecastMinTemp[1] + "°";
     
     let thirdDayDate = document.getElementById("third-day-date");
+    let thirdDayTitle = document.getElementById("third-day-title");
     let thirdDayCondition = document.getElementById("third-day-forecast-icon");
     let thirdDayMaxTemp = document.getElementById("third-day-max-temp");
     let thirdDayMinTemp = document.getElementById("third-day-min-temp");
 
-    thirdDayDate.innerHTML = getThirdDayDate();
+    thirdDayDate.innerHTML = getThirdDayDateString();
+    thirdDayTitle.innerHTML = getThirdDayName();
+    thirdDayCondition.innerHTML = "<img width=80px height=80px src=" + forecastCondition[2] + ">";
+    thirdDayMaxTemp.innerHTML = "High: " + forecastMaxTemp[2] + "°";
+    thirdDayMinTemp.innerHTML = "Low: " + forecastMinTemp[2] + "°";
 
-    let forecastMaxTemp = [];
 
-    for(let i=0; i < response.forecast.forecastday.length; i++) {       
-        forecastMaxTemp.push(Math.round(response.forecast.forecastday[i].day.maxtemp_f));
-        console.log("forecastMaxTemp: " + forecastMaxTemp)
-    }
 }
 
-function getTodayDate() {
+function getTodayDateString() {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     let date = new Date().toLocaleDateString(undefined, options);
     const [month, day, year] = date.split("/");
     return `${year}-${month}-${day}`;
 }
 
-function getTomorrowDate() {
+function getTomorrowDateString() {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     let date = new Date();
     date.setDate(date.getDate() + 1);
@@ -127,12 +143,26 @@ function getTomorrowDate() {
 }
 
 function getThirdDayDate() {
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     let date = new Date();
     date.setDate(date.getDate() + 2);
-    let localDate = date.toLocaleDateString(undefined, options);
+    return date;
+}
+
+function getThirdDayDateString() {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    let thirdDayDate = getThirdDayDate();
+    let localDate = thirdDayDate.toLocaleDateString(undefined, options);
     const [month, day, year] = localDate.split("/");
     return `${year}-${month}-${day}`;
+}
+
+function getThirdDayName() {
+    let thirdDayDate = getThirdDayDate();
+    let dayOfWeek = thirdDayDate.getDay();
+    let daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let dayName = daysOfWeek[dayOfWeek];
+    return dayName;
+
 }
 
 getCurrentWeather(currentCity);

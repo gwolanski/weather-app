@@ -10,6 +10,7 @@ html {
     background: linear-gradient(to bottom, rgb(7, 21, 46), rgb(9, 85, 125));
     background-repeat: no-repeat;
     width: 100vw;
+    height: 100vh;
 }
 
 #header {
@@ -73,7 +74,7 @@ html {
 #body-container {
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: 70px;
 
 }
 
@@ -156,9 +157,34 @@ html {
 }
 
 .forecast {
-    background-color: rgba(13, 90, 131, 0.502);
-    height: 300px;
+    background-color: rgba(18, 119, 173, 0.502);
+    color: rgb(186, 186, 186);
+    height: 150px;
     width: 300px;
     border-radius: 20px;
     padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px 30px 30px;
+}
+
+.forecast-day {
+    color: rgb(186, 186, 186);
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.forecast-icon {
+    grid-column: 1;
+    grid-row: 2 / 4;
+}
+
+.forecast-max {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.forecast-min {
+    grid-column: 2;
+    grid-row: 3;
 }
