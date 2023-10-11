@@ -71,6 +71,27 @@ html {
     cursor: pointer;
 }
 
+#units-container {
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    color: rgb(182, 182, 182);
+    font-size: 1.1rem;
+    padding: 7px;
+    background:rgb(54, 70, 94);
+    border: 2px solid black
+}
+
+#units-container:hover {
+    cursor: pointer;
+}
+
+#selected-unit {
+    color: rgb(141, 228, 216);
+    font-weight: bold;
+}
+
 #body-container {
     display: flex;
     flex-direction: column;
@@ -149,7 +170,7 @@ html {
 
 #forecast-container {
     width: 80%;
-    margin-left: auto;
+    margin: auto 0;
     height: 20%;
     display: flex;
     flex-direction: row;

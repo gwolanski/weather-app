@@ -1,6 +1,9 @@
 let currentCity = "Denver";
 const searchBar = document.getElementById("search-bar");
 const searchBtn = document.getElementById("search-btn");
+let fahrenheitDisplayed = true;
+let celsiusDisplayed = false;
+let unitConverter = document.getElementById("units-container");
 
 
 searchBtn.addEventListener("click", updateLocation);
@@ -165,6 +168,29 @@ function getThirdDayName() {
     return dayName;
 
 }
+
+unitConverter.addEventListener("click", unitConversion);
+
+function unitConversion() {
+    let celsius = document.querySelector(".celsius");
+    let fahrenheit = document.querySelector(".fahrenheit");
+    
+    if (fahrenheitDisplayed) {
+        fahrenheitDisplayed = false;
+        celsiusDisplayed = true;
+
+        fahrenheit.removeAttribute("id", "selected-unit");
+        celsius.setAttribute("id", "selected-unit");
+    } else {
+        fahrenheitDisplayed = true;
+        celsiusDisplayed = false;
+
+        celsius.removeAttribute("id", "selected-unit");
+        fahrenheit.setAttribute("id", "selected-unit");
+    }
+}
+
+
 
 getCurrentWeather(currentCity);
 getForecast(currentCity);
