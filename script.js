@@ -9,7 +9,7 @@ function updateLocation() {
     let locationInput = searchBar.value;
     if (locationInput !== "") {
         currentCity = locationInput;
-        searchBar.innerHTML = "";
+        searchBar.value = "";
 
         getCurrentWeather(currentCity);
         getForecast(currentCity);
@@ -43,8 +43,9 @@ async function getCurrentWeather(location) {
 
             updateCurrentWeather(jsonResponse);
         })
-        // code below for displaying error message if city is invalid
-        // .catch(error => )
+        .catch(() => {
+            alert("Error. Please enter a valid city.");
+        })
 }
 
 function updateCurrentWeather(response) {
