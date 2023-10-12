@@ -5,6 +5,12 @@ let fahrenheitDisplayed = true;
 let celsiusDisplayed = false;
 let unitConverter = document.getElementById("units-container");
 
+//current weather 
+
+//forecast elements
+let todayMaxTemp = document.getElementById("today-max-temp");
+let todayMinTemp = document.getElementById("today-min-temp");
+
 
 searchBtn.addEventListener("click", updateLocation);
 
@@ -19,6 +25,8 @@ function updateLocation() {
 ;    }
 
 }
+
+let fahrenheitToCelsius = (fahrenheit) => Math.round((fahrenheit - 32) * 5 / 9);
 
 async function getCurrentWeather(location) {
     let currentWeatherURL =  "http://api.weatherapi.com/v1/current.json?key=2df0fe7fe5c54e55826132323230310&q=" + location;
@@ -52,17 +60,17 @@ async function getCurrentWeather(location) {
 }
 
 function updateCurrentWeather(response) {
-    let currentTempF = document.getElementById("current-temp");
+    let currentTemp = document.getElementById("current-temp");
     let currentCondition = document.getElementById("current-condition");
     let currentConditionIcon = document.getElementById("current-condition-icon")
-    let feelsLikeF = document.getElementById("feels-like");
+    let feelsLike = document.getElementById("feels-like");
     let currentWind = document.getElementById("current-wind");
 
     currentCondition.innerHTML = response.current.condition.text;
     currentConditionIcon.innerHTML = "<img width=100px height=100px src=" + response.current.condition.icon + ">";
-    currentTempF.innerHTML = Math.round(response.current.temp_f) + "°";
-    feelsLikeF.innerHTML = "Feels like: " + Math.round(response.current.feelslike_f) + "°";
-    currentWind.innerHTML = "Wind speed: " + response.current.wind_mph + " mph";
+    currentTemp.innerHTML = Math.round(fahrenheitDisplayed ? response.current.temp_f : response.current.temp_c) + "°";
+    feelsLike.innerHTML = "Feels like: " + Math.round(fahrenheitDisplayed ? response.current.feelslike_f : response.current.feelslike_c) + "°";
+    currentWind.innerHTML = "Wind speed: " + Math.round(fahrenheitDisplayed ? response.current.wind_mph : response.current.wind_kph) + (fahrenheitDisplayed ? " mph" : " kph");
 }
 
 async function getForecast(location) {
@@ -77,7 +85,7 @@ async function getForecast(location) {
             // console.log(cow)
             )
         .then(jsonForecastResponse => {
-            console.log("jsonForecastResponse: " + JSON.stringify(jsonForecastResponse, null, 4));
+            // console.log("jsonForecastResponse: " + JSON.stringify(jsonForecastResponse, null, 4));
             updateForecast(jsonForecastResponse);
         })
     
@@ -96,14 +104,12 @@ function updateForecast(response) {
    
     let todayDate = document.getElementById("today-date");
     let todayCondition = document.getElementById("today-forecast-icon");
-    let todayMaxTemp = document.getElementById("today-max-temp");
-    let todayMinTemp = document.getElementById("today-min-temp");
+
 
     todayDate.innerHTML = getTodayDateString();
     todayCondition.innerHTML = "<img width=80px height=80px src=" + forecastCondition[0] + ">";
-    todayMaxTemp.innerHTML = "High: " + forecastMaxTemp[0] + "°";
-    todayMinTemp.innerHTML = "Low: " + forecastMinTemp[0] + "°";
-
+    todayMaxTemp.innerHTML = "High: " + (fahrenheitDisplayed ? forecastMaxTemp[0] : fahrenheitToCelsius(forecastMaxTemp[0])) + "°";
+    todayMinTemp.innerHTML = "Low: " + (fahrenheitDisplayed ? forecastMinTemp[0] : fahrenheitToCelsius(forecastMinTemp[0])) + "°";
 
     let tomorrowDate = document.getElementById("tomorrow-date");
     let tomorrowCondition = document.getElementById("tomorrow-forecast-icon");
@@ -112,8 +118,9 @@ function updateForecast(response) {
 
     tomorrowDate.innerHTML = getTomorrowDateString();
     tomorrowCondition.innerHTML = "<img width=80px height=80px src=" + forecastCondition[1] + ">";
-    tomorrowMaxTemp.innerHTML = "High: " + forecastMaxTemp[1] + "°";
-    tomorrowMinTemp.innerHTML ="Low: " + forecastMinTemp[1] + "°";
+    tomorrowMaxTemp.innerHTML = "High: " + (fahrenheitDisplayed ? forecastMaxTemp[1] : fahrenheitToCelsius(forecastMaxTemp[1])) + "°";
+    tomorrowMinTemp.innerHTML = "Low: " + (fahrenheitDisplayed ? forecastMinTemp[1] : fahrenheitToCelsius(forecastMinTemp[1])) + "°";
+
     
     let thirdDayDate = document.getElementById("third-day-date");
     let thirdDayTitle = document.getElementById("third-day-title");
@@ -124,9 +131,8 @@ function updateForecast(response) {
     thirdDayDate.innerHTML = getThirdDayDateString();
     thirdDayTitle.innerHTML = getThirdDayName();
     thirdDayCondition.innerHTML = "<img width=80px height=80px src=" + forecastCondition[2] + ">";
-    thirdDayMaxTemp.innerHTML = "High: " + forecastMaxTemp[2] + "°";
-    thirdDayMinTemp.innerHTML = "Low: " + forecastMinTemp[2] + "°";
-
+    thirdDayMaxTemp.innerHTML = "High: " + (fahrenheitDisplayed ? forecastMaxTemp[2] : fahrenheitToCelsius(forecastMaxTemp[2])) + "°";
+    thirdDayMinTemp.innerHTML = "Low: " + (fahrenheitDisplayed ? forecastMinTemp[2] : fahrenheitToCelsius(forecastMinTemp[2])) + "°";
 
 }
 
@@ -188,6 +194,9 @@ function unitConversion() {
         celsius.removeAttribute("id", "selected-unit");
         fahrenheit.setAttribute("id", "selected-unit");
     }
+
+    getCurrentWeather(currentCity);
+    getForecast(currentCity);
 }
 
 
