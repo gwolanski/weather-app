@@ -26,7 +26,7 @@ function updateLocation() {
 let fahrenheitToCelsius = (fahrenheit) => Math.round((fahrenheit - 32) * 5 / 9);
 
 async function getCurrentWeather(location) {
-    let currentWeatherURL =  "http://api.weatherapi.com/v1/current.json?key=2df0fe7fe5c54e55826132323230310&q=" + location;
+    let currentWeatherURL =  "https://api.weatherapi.com/v1/current.json?key=2df0fe7fe5c54e55826132323230310&q=" + location;
     let locationDisplay = document.getElementById("current-location");
     let countryDisplay = document.getElementById("current-country");
     let currentRegion = "";
@@ -71,7 +71,7 @@ function updateCurrentWeather(response) {
 }
 
 async function getForecast(location) {
-    let forecastURL = "http://api.weatherapi.com/v1/forecast.json?key=2df0fe7fe5c54e55826132323230310&q=" + location + "&days=3";
+    let forecastURL = "https://api.weatherapi.com/v1/forecast.json?key=2df0fe7fe5c54e55826132323230310&q=" + location + "&days=3";
     
     await fetch(forecastURL, {
         mode: 'cors'
