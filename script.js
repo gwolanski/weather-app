@@ -5,9 +5,6 @@ let fahrenheitDisplayed = true;
 let celsiusDisplayed = false;
 let unitConverter = document.getElementById("units-container");
 
-//current weather 
-
-//forecast elements
 let todayMaxTemp = document.getElementById("today-max-temp");
 let todayMinTemp = document.getElementById("today-min-temp");
 
@@ -35,12 +32,12 @@ async function getCurrentWeather(location) {
     let currentRegion = "";
     let currentCountry = "";
 
-    fetch(currentWeatherURL, {
+    await fetch(currentWeatherURL, {
         mode: 'cors'
     })
         .then(response => response.json())
         .then(jsonResponse => {
-            console.log("jsonResponse: " + JSON.stringify(jsonResponse, null, 4))
+            // console.log("jsonResponse: " + JSON.stringify(jsonResponse, null, 4))
             currentCity = jsonResponse.location.name;
             currentRegion = jsonResponse.location.region;
             currentCountry = jsonResponse.location.country;
@@ -76,13 +73,11 @@ function updateCurrentWeather(response) {
 async function getForecast(location) {
     let forecastURL = "http://api.weatherapi.com/v1/forecast.json?key=2df0fe7fe5c54e55826132323230310&q=" + location + "&days=3";
     
-    fetch(forecastURL, {
+    await fetch(forecastURL, {
         mode: 'cors'
     })
         .then(forecastResponse => 
             forecastResponse.json()
-            // let cow = forecastResponse.json()
-            // console.log(cow)
             )
         .then(jsonForecastResponse => {
             // console.log("jsonForecastResponse: " + JSON.stringify(jsonForecastResponse, null, 4));
