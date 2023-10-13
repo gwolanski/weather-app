@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;500&display=swap');
+
 body,
 html {
     padding: 0;
@@ -6,11 +8,12 @@ html {
     width: 100%;
 }
 
-html {
+body {
     background: linear-gradient(to bottom, rgb(7, 21, 46), rgb(9, 85, 125));
     background-repeat: no-repeat;
-    width: 100vw;
-    height: 100vh;
+    background-size: cover;
+    height: 100%;
+    font-family: 'Kanit', sans-serif;
 }
 
 #header {
@@ -30,6 +33,7 @@ html {
     flex-direction: row;
     gap: 10px;
     align-items: center;
+    font-weight: 700;
 }
 
 #icon {
@@ -42,7 +46,6 @@ html {
     flex-direction: row;
     gap: 10px;
     background-color: rgb(101, 118, 145);
-
     border-radius: 20px;
 }
 
@@ -57,6 +60,8 @@ html {
 
 #search-bar::placeholder {
     color: rgb(193, 218, 226);
+    font-family: 'Kanit', sans-serif;
+    font-weight: 300;
 }
 
 #search-btn {
@@ -65,6 +70,8 @@ html {
     background-color: rgb(171, 171, 171); 
     border: none;
     border-radius: 20px;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
 }
 
 #search-btn:hover {
@@ -96,7 +103,7 @@ html {
     display: flex;
     flex-direction: column;
     gap: 70px;
-
+    /* height: 100%; */
 }
 
 #top-body {
@@ -107,13 +114,17 @@ html {
 }
 
 #location-container {
-    padding: 25px;
+    padding: 20px;
     text-align: center;
 }
 
 #current-location {
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+#current-country {
+    font-weight: 200;
 }
 
 #current-weather-container {
@@ -125,8 +136,8 @@ html {
     padding-bottom: 50px;
     border: 2px white solid;
     border-radius: 40%;
-    width: 25%;
-    gap: 25px;
+    width: 250px;
+    gap: 15px;
     font-size: 1.2rem;
 }
 
@@ -135,7 +146,6 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0;
 }
 
 #current-condition-icon {
@@ -148,7 +158,6 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
 }
 
 #current-temp {
@@ -159,6 +168,7 @@ html {
 #feels-like,
 #current-wind {
     font-size: 1rem;
+    font-weight: 300;
 }
 
 #bottom-body {
@@ -169,7 +179,7 @@ html {
 }
 
 #forecast-container {
-    width: 80%;
+    width: 700px;
     margin: auto 0;
     height: 20%;
     display: flex;
@@ -183,7 +193,7 @@ html {
     background-color: rgba(18, 119, 173, 0.502);
     color: rgb(186, 186, 186);
     height: 150px;
-    width: 300px;
+    width: 200px;
     border-radius: 20px;
     padding: 10px;
     display: grid;
@@ -197,6 +207,10 @@ html {
     font-weight: bold;
 }
 
+.forecast-date {
+    font-weight: 300;
+}
+
 .forecast-icon {
     grid-column: 1;
     grid-row: 2 / 3;
@@ -206,11 +220,13 @@ html {
     grid-column: 2;
     grid-row: 2;
     align-self: end;
+    font-weight: 400;
 }
 
 .forecast-min {
     grid-column: 2;
     grid-row: 3;
     align-self: end;
+    font-weight: 300;
     
 }
