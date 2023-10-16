@@ -29,7 +29,7 @@ body {
     flex-direction: row;
     height: 10vh;
     padding: 15px;
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     justify-content: space-between;
     align-items: center;
 }
@@ -43,8 +43,8 @@ body {
 }
 
 #icon {
-    height: 100px;
-    width: 100px;
+    height: 75px;
+    width: 75px;
 }
 
 #search-container {
@@ -152,6 +152,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 15px;
 }
 
 #current-condition-icon {
