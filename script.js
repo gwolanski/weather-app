@@ -8,7 +8,6 @@ let unitConverter = document.getElementById("units-container");
 let todayMaxTemp = document.getElementById("today-max-temp");
 let todayMinTemp = document.getElementById("today-min-temp");
 
-
 searchBtn.addEventListener("click", updateLocation);
 
 function updateLocation() {
@@ -19,8 +18,7 @@ function updateLocation() {
 
         getCurrentWeather(currentCity);
         getForecast(currentCity);
-;    }
-
+    }
 }
 
 let fahrenheitToCelsius = (fahrenheit) => Math.round((fahrenheit - 32) * 5 / 9);
@@ -78,12 +76,11 @@ async function getForecast(location) {
     })
         .then(forecastResponse => 
             forecastResponse.json()
-            )
+        )
         .then(jsonForecastResponse => {
             // console.log("jsonForecastResponse: " + JSON.stringify(jsonForecastResponse, null, 4));
             updateForecast(jsonForecastResponse);
         })
-    
 }
 
 function updateForecast(response) {
@@ -99,7 +96,6 @@ function updateForecast(response) {
    
     let todayDate = document.getElementById("today-date");
     let todayCondition = document.getElementById("today-forecast-icon");
-
 
     todayDate.innerHTML = getTodayDateString();
     todayCondition.innerHTML = "<img width=80px height=80px src=" + forecastCondition[0] + ">";
@@ -128,7 +124,6 @@ function updateForecast(response) {
     thirdDayCondition.innerHTML = "<img width=80px height=80px src=" + forecastCondition[2] + ">";
     thirdDayMaxTemp.innerHTML = "High: " + (fahrenheitDisplayed ? forecastMaxTemp[2] : fahrenheitToCelsius(forecastMaxTemp[2])) + "°";
     thirdDayMinTemp.innerHTML = "Low: " + (fahrenheitDisplayed ? forecastMinTemp[2] : fahrenheitToCelsius(forecastMinTemp[2])) + "°";
-
 }
 
 function getTodayDateString() {
@@ -167,7 +162,6 @@ function getThirdDayName() {
     let daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     let dayName = daysOfWeek[dayOfWeek];
     return dayName;
-
 }
 
 unitConverter.addEventListener("click", unitConversion);
@@ -193,8 +187,6 @@ function unitConversion() {
     getCurrentWeather(currentCity);
     getForecast(currentCity);
 }
-
-
 
 getCurrentWeather(currentCity);
 getForecast(currentCity);

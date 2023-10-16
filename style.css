@@ -14,12 +14,8 @@ html {
 }
 
 body {
-    /* background: linear-gradient(to bottom, rgb(7, 21, 46), rgb(9, 85, 125)); */
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 100%;
     font-family: 'Kanit', sans-serif;
-    min-height: 100vh;
 }
 
 #header {
@@ -235,5 +231,4 @@ body {
     grid-row: 3;
     align-self: end;
     font-weight: 300;
-    
 }
